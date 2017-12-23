@@ -41,5 +41,4 @@
 (defn compute-statistics [sample-points]
   (let [fields [:speed :elevation :elevation-gain :acceleration :grade]
         other-fields (keys (:other-fields (first sample-points)))]
-    (println (concat fields other-fields))
     (compute-statistics-for-fields sample-points (concat fields other-fields))))

@@ -34,7 +34,9 @@
 
                  [javax.xml.bind/jaxb-api "2.3.0"]
                  [org.clojure/data.xml "0.0.8"]
-                 [org.clojure/data.zip "0.1.2"]]
+                 [org.clojure/data.zip "0.1.2"]
+                 [org.lz4/lz4-java "1.4.0"]]
+
 
   :min-lein-version "2.0.0"
 

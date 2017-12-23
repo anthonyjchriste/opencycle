@@ -2,59 +2,59 @@
   (:require [opencycle.stats :as stats]))
 
 
-(defn pairs [coll]
+(defn- pairs [coll]
   (map vector coll (rest coll)))
 
-(defn diff [ns]
+(defn- diff [ns]
   (map - (rest ns) ns))
 
-(defn zero-divide [n d]
+(defn- zero-divide [n d]
   (if (or (zero? n)
           (zero? d))
     0.0
     (/ n d)))
 
-(defn pad-left [coll to-size]
+(defn- pad-left [coll to-size]
   (if (= (count coll) to-size)
     coll
     (recur (into [0.0] coll) to-size)))
 
-(defn sample-pair-difference [sample-pair key]
+(defn- sample-pair-difference [sample-pair key]
   (let [sp1 (first sample-pair)
         sp2 (second sample-pair)
         v1 (get sp1 key)
         v2 (get sp2 key)]
     (- v2 v1)))
 
-(defn delta-ratio [sample-pair key1 key2]
+(defn- delta-ratio [sample-pair key1 key2]
   (let [delta-key1 (sample-pair-difference sample-pair key1)
         delta-key2 (sample-pair-difference sample-pair key2)]
     (zero-divide delta-key1 delta-key2)))
 
-(defn derive-elevation-gain [sample-pair]
+(defn- derive-elevation-gain [sample-pair]
   (delta-ratio sample-pair :elevation :timestamp))
 
-(defn derive-speed [sample-pair]
+(defn- derive-speed [sample-pair]
   (delta-ratio sample-pair :total-distance :timestamp))
 
-(defn derive-grade [sample-pair]
+(defn- derive-grade [sample-pair]
   (delta-ratio sample-pair :elevation :total-distance))
 
-(defn derive-acceleration [delta-speed delta-time]
+(defn- derive-acceleration [delta-speed delta-time]
   (zero-divide delta-speed delta-time))
 
-(defn derive-accelerations [speeds timestamps]
+(defn- derive-accelerations [speeds timestamps]
   (let [delta-speeds (diff speeds)
         delta-timestamps (diff timestamps)]
     (map derive-acceleration speeds timestamps)))
 
-(defn assoc-derived [samples derived key]
+(defn- assoc-derived [samples derived key]
   (map (fn [sample v]
          (assoc sample key v))
        samples
        derived))
 
-(defn derive-sample-points [samples]
+(defn- derive-sample-points [samples]
   (let [sample-pairs (pairs samples)
         cnt (count samples)
         speeds (pad-left (map derive-speed sample-pairs) cnt)
@@ -74,7 +74,6 @@
         (assoc-derived accelerations :acceleration)
         (assoc-derived total-times :total-time))))
 
-; Public
 (defn make-sample [timestamp latitude longitude elevation distance & other-fields]
   {:timestamp      timestamp
    :latitude       latitude

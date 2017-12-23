@@ -10,13 +10,13 @@
   (:import (java.time ZonedDateTime)
            (java.io ByteArrayInputStream)))
 
-(defn parse-date-time [datetime]
+(defn- parse-date-time [datetime]
   (-> datetime
       ZonedDateTime/parse
       .toInstant
       .getEpochSecond))
 
-(defn parse-trackpoint [trackpoint]
+(defn- parse-trackpoint [trackpoint]
   {:timestamp      (parse-date-time (xml1-> trackpoint :Time text))
    :latitude       (read-string     (xml1-> trackpoint :Position :LatitudeDegrees text))
    :longitude      (read-string     (xml1-> trackpoint :Position :LongitudeDegrees text))
@@ -24,7 +24,7 @@
    :distance       (read-string     (xml1-> trackpoint :DistanceMeters text))
    :heart-rate-bpm (read-string     (xml1-> trackpoint :HeartRateBpm :Value text))})
 
-(defn fix-zero-distances [trackpoints]
+(defn- fix-zero-distances [trackpoints]
   (reduce (fn [coll trackpoint]
             (let [next-value (if (empty? coll)
                                trackpoint
@@ -35,7 +35,7 @@
           []
           trackpoints))
 
-(defn post-process [trackpoints]
+(defn- post-process [trackpoints]
   (-> trackpoints
       fix-zero-distances))
 
@@ -60,14 +60,4 @@
                                                                 {:heart-rate-bpm (:heart-rate-bpm %)})
                                            trackpoints)]
     (models/make-ride sample-points compressed (count bytes))))
-
-
-
-
-
-(def ride (parse (io/input-stream-from-file "C:/Users/Anthony/Downloads/11368917461.tcx")))
-ride
-
-
-
 

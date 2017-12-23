@@ -25,25 +25,19 @@
 | photo       | string    | url         |
 
 ### sample_point
-| Field          | Type              | Description       |
-|----------------|-------------------|-------------------|
-| timestamp      | double            | epoch seconds UTC | 
-| latitude       | double            | degrees           |
-| longitude      | double            | degrees           |
-| speed          | double            | meters/second     |
-| elevation      | double            | meters            |
-| elevation_gain | double            | meters/second   
-| acceleration   | double            | m/s<sup>2</sup>   |
-| grade          | double            | percent           |
-| total_distance | double            | meters            |
-| total_time     | double            | seconds           |
-| other_fields   | list[other_field] |                   |
-
-### other_field
-| Field | Type   |
-|-------|--------|
-| name  | string |
-| value | double |
+| Field          | Type                | Description       |
+|----------------|---------------------|-------------------|
+| timestamp      | double              | epoch seconds UTC | 
+| latitude       | double              | degrees           |
+| longitude      | double              | degrees           |
+| speed          | double              | meters/second     |
+| elevation      | double              | meters            |
+| elevation_gain | double              | meters/second     |   
+| acceleration   | double              | m/s<sup>2</sup>   |
+| grade          | double              | percent           |
+| total_distance | double              | meters            |
+| total_time     | double              | seconds           |
+| other_fields   | map[string, double] | key, value pairs  |
 
 ### field_statistic_set
 | Field         | Type         |
@@ -53,8 +47,11 @@
 | max           | double       |
 | mean          | double       |
 | median        | double       |
-| mode          | list[double] |
 | range         | double       |
 | variance      | double       |
 
+
+<!--
+| mode          | list[double] |   
+-->
 

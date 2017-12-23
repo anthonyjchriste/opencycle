@@ -1,4 +1,5 @@
-(ns opencycle.models)
+(ns opencycle.models
+  (:require [opencycle.stats :as stats]))
 
 
 (defn pairs [coll]
@@ -75,16 +76,20 @@
 
 ; Public
 (defn make-sample [timestamp latitude longitude elevation distance & other-fields]
-  {:timestamp timestamp
-   :latitude  latitude
-   :longitude longitude
-   :elevation elevation
-   :total-distance  distance
-   :other-fields other-fields})
+  {:timestamp      timestamp
+   :latitude       latitude
+   :longitude      longitude
+   :elevation      elevation
+   :total-distance distance
+   :other-fields   (if other-fields (first other-fields) {})})
 
 (defn make-samples [make-sample-fn coll]
   (derive-sample-points (map make-sample-fn coll)))
 
-(defn other-field [name value]
-  {:name name
-   :value value})
+(defn make-ride [sample-points]
+  {:start-timestamp      (:timestamp (first sample-points))
+   :end-timestamp        (:timestamp (last sample-points))
+   :total-time           (:total-time (last sample-points))
+   :total-distance       (:total-distance (last sample-points))
+   :field-statistic-sets (stats/compute-statistics sample-points)
+   :sample-points sample-points})

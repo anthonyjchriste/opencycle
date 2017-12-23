@@ -4,7 +4,8 @@
             [clojure.data.zip.xml :refer [text xml-> xml1->]]
             [opencycle.geo :as geo]
             [opencycle.io.io :as io]
-            [opencycle.models :as models])
+            [opencycle.models :as models]
+            [opencycle.stats :as stats])
   (:import (java.time ZonedDateTime)))
 
 (defn parse-date-time [datetime]
@@ -61,10 +62,9 @@
                                                              (:longitude %)
                                                              (:elevation %)
                                                              (:distance %)
-                                                             [{:heart-rate-bpm (:heart-rate-bpm %)}])
+                                                             {:heart-rate-bpm (:heart-rate-bpm %)})
                                         trackpoints))
-
 sample-points
 
-
+(models/make-ride sample-points)
 

@@ -34,10 +34,10 @@
   (delta-ratio sample-pair :elevation :timestamp))
 
 (defn derive-speed [sample-pair]
-  (delta-ratio sample-pair :distance :timestamp))
+  (delta-ratio sample-pair :total-distance :timestamp))
 
 (defn derive-grade [sample-pair]
-  (delta-ratio sample-pair :elevation :distance))
+  (delta-ratio sample-pair :elevation :total-distance))
 
 (defn derive-acceleration [delta-speed delta-time]
   (zero-divide delta-speed delta-time))
@@ -73,9 +73,18 @@
         (assoc-derived accelerations :acceleration)
         (assoc-derived total-times :total-time))))
 
-(defn make-sample [timestamp latitude longitude elevation distance]
+; Public
+(defn make-sample [timestamp latitude longitude elevation distance & other-fields]
   {:timestamp timestamp
    :latitude  latitude
    :longitude longitude
    :elevation elevation
-   :distance  distance})
+   :total-distance  distance
+   :other-fields other-fields})
+
+(defn make-samples [make-sample-fn coll]
+  (derive-sample-points (map make-sample-fn coll)))
+
+(defn other-field [name value]
+  {:name name
+   :value value})

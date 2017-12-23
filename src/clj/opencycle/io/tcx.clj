@@ -54,12 +54,17 @@
 
 
 (def trackpoints (parse (io/input-stream-from-file "C:/Users/Anthony/Downloads/11368917461.tcx")))
-(def sample-points (map #(models/make-sample (:timestamp %)
-                                             (:latitude %)
-                                             (:longitude %)
-                                             (:elevation %)
-                                             (:distance %)) trackpoints))
 
-(def derived-sample-points (models/derive-sample-points sample-points))
+
+(def sample-points (models/make-samples #(models/make-sample (:timestamp %)
+                                                             (:latitude %)
+                                                             (:longitude %)
+                                                             (:elevation %)
+                                                             (:distance %)
+                                                             [{:heart-rate-bpm (:heart-rate-bpm %)}])
+                                        trackpoints))
+
+sample-points
+
 
 

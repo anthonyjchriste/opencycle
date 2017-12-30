@@ -5,6 +5,9 @@
             [opencycle.config :refer [env]]
             [clojure.tools.cli :refer [parse-opts]]
             [clojure.tools.logging :as log]
+
+            [opencycle.mongodb :refer [database database-connection]]
+
             [mount.core :as mount])
   (:gen-class))
 
@@ -48,3 +51,5 @@
 
 (defn -main [& args]
   (start-app args))
+
+

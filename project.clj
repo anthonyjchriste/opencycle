@@ -36,7 +36,9 @@
                  [org.clojure/data.xml "0.0.8"]
                  [org.clojure/data.zip "0.1.2"]
                  [org.lz4/lz4-java "1.4.0"]
-                 [com.novemberain/monger "3.1.0"]]
+                 [com.novemberain/monger "3.1.0"]
+                 [org.slf4j/slf4j-nop "1.7.12"]
+                 ]
 
 
   :min-lein-version "2.0.0"

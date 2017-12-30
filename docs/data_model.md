@@ -12,17 +12,22 @@
 | total-distance           | double                    | meters            |
 | field-statistic-sets     | list[field-statistic-set] |                   |
 | sample-points            | list[sample-point]        |                   |
+| subsampled-locations     | list[list[integer]        | [[lat<sub>0</sub> lng<sub>0</sub>] [lat<sub>1</sub> lng<sub>1</sub>] ... [lat<sub>n</sub> lng<sub>n</sub>]] |                  |
 | geo-notes                | list[geo-note]            |                   |
 | original-file            | bytes                     | lz4 compressed    |
 | original-file-size-bytes | integer                   |                   |
 
+<!--
+| original-file-name       | string                    |                   |
+-->
+
 #### geo-note
-| Field       | Type      | Description |     
-|-------------|-----------|-------------| 
-| latitude    | double    | degrees     | 
-| longitude   | double    | degrees     | 
-| description | string    |             |
-| photo       | string    | url         |
+| Field       | Type         | Description |     
+|-------------|--------------|-------------| 
+| latitude    | double       | degrees     | 
+| longitude   | double       | degrees     | 
+| description | string       |             |
+| photos      | list[string] | urls        |
 
 ### sample-point
 | Field          | Type                | Description       |

@@ -68,6 +68,6 @@
 
 (let [ride (parse (io/input-stream-from-file "C:/Users/Anthony/Downloads/11368917461.tcx"))]
   (do
-    (mount/start)
     (mongodb/save-ride ride)
-    (mount/stop)))
+    ))
+

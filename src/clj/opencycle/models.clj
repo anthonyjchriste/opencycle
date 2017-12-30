@@ -86,11 +86,14 @@
   (derive-sample-points (map make-sample-fn coll)))
 
 (defn make-ride [sample-points original-file original-file-size-bytes]
-  {:start-timestamp      (:timestamp (first sample-points))
-   :end-timestamp        (:timestamp (last sample-points))
-   :total-time           (:total-time (last sample-points))
-   :total-distance       (:total-distance (last sample-points))
-   :field-statistic-sets (stats/compute-statistics sample-points)
-   :sample-points sample-points
-   :original-file original-file
+  {:start-timestamp          (:timestamp (first sample-points))
+   :end-timestamp            (:timestamp (last sample-points))
+   :total-time               (:total-time (last sample-points))
+   :total-distance           (:total-distance (last sample-points))
+   :field-statistic-sets     (stats/compute-statistics sample-points)
+   :sample-points            sample-points
+   :subsampled-locations     (map (fn [sample-point]
+                                    [(:latitude sample-point) (:longitude sample-point)])
+                                  (take-nth 60 sample-points))
+   :original-file            original-file
    :original-file-size-bytes original-file-size-bytes})

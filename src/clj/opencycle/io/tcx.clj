@@ -66,8 +66,8 @@
     (models/make-ride sample-points compressed (count bytes))))
 
 
-(let [ride (parse (io/input-stream-from-file "C:/Users/Anthony/Downloads/11368917461.tcx"))]
-  (do
-    (mongodb/save-ride ride)
-    ))
+;(let [ride (parse (io/input-stream-from-file "C:/Users/Anthony/Downloads/11368917461.tcx"))]
+;  (do
+;    (mongodb/save-ride ride)
+;    ))
 

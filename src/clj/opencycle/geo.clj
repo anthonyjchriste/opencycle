@@ -1,7 +1,7 @@
 (ns opencycle.geo)
 
-(def radius-of-earth-km 6371)
-(def radius-of-earth-m (* 1000 radius-of-earth-km))
+(def ^:private radius-of-earth-km 6371)
+(def ^:private radius-of-earth-m (* 1000 radius-of-earth-km))
 
 (defn haversine [lat1 lon1 lat2 lon2]
   "https://www.movable-type.co.uk/scripts/latlong.html"

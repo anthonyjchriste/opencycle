@@ -2,11 +2,15 @@
   (:require [clojure.data.xml :as xml]
             [clojure.zip :as zip]
             [clojure.data.zip.xml :refer [text xml-> xml1->]]
+
             [opencycle.geo :as geo]
             [opencycle.io.io :as io]
             [opencycle.lz4 :as lz4]
             [opencycle.models :as models]
-            [opencycle.stats :as stats])
+            [opencycle.mongodb :as mongodb]
+            [opencycle.stats :as stats]
+
+            [mount.core :as mount])
   (:import (java.time ZonedDateTime)
            (java.io ByteArrayInputStream)))
 
@@ -61,3 +65,9 @@
                                            trackpoints)]
     (models/make-ride sample-points compressed (count bytes))))
 
+
+(let [ride (parse (io/input-stream-from-file "C:/Users/Anthony/Downloads/11368917461.tcx"))]
+  (do
+    (mount/start)
+    (mongodb/save-ride ride)
+    (mount/stop)))

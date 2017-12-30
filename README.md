@@ -1,8 +1,11 @@
 # opencycle
 
-generated using Luminus version "2.9.12.04"
+opencycle is a self hosted web server that supports viewing and analyzing cycling data imported from popular GPS file 
+formats.
 
-FIXME
+opencycle currently supports TCX files from Fitbit.
+
+opencycle is written in clojure and clojurescript.
 
 ## Prerequisites
 
@@ -16,6 +19,3 @@ To start a web server for the application, run:
 
     lein run 
 
-## License
-
-Copyright © 2017 FIXME

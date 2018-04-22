@@ -2,6 +2,7 @@
   (:require [compojure.core :refer [routes wrap-routes]]
             [opencycle.layout :refer [error-page]]
             [opencycle.routes.home :refer [home-routes]]
+            [opencycle.routes.api :refer [api-routes]]
             [compojure.route :as route]
             [opencycle.env :refer [defaults]]
             [mount.core :as mount]
@@ -14,6 +15,9 @@
 (def app-routes
   (routes
     (-> #'home-routes
+        (wrap-routes middleware/wrap-csrf)
+        (wrap-routes middleware/wrap-formats))
+    (-> #'api-routes
         (wrap-routes middleware/wrap-csrf)
         (wrap-routes middleware/wrap-formats))
     (route/not-found

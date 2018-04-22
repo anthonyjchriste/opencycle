@@ -22,7 +22,8 @@
                  [org.clojure/tools.logging "0.4.0"]
                  [org.clojure/tools.reader "1.1.0"]
                  [org.webjars.bower/tether "1.4.0"]
-                 [org.webjars/bootstrap "4.0.0-alpha.5"]
+                 [org.webjars/bootstrap "4.0.0"]
+                 [org.webjars.npm/bulma "0.7.0"]
                  [org.webjars/font-awesome "4.7.0"]
                  [reagent "0.7.0"]
                  [reagent-utils "0.2.1"]
@@ -38,7 +39,7 @@
                  [org.lz4/lz4-java "1.4.0"]
                  [com.novemberain/monger "3.1.0"]
                  [org.slf4j/slf4j-nop "1.7.12"]
-                 ]
+                 [cljsjs/leaflet "1.2.0-0"]]
 
 
   :min-lein-version "2.0.0"

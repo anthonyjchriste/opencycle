@@ -35,16 +35,16 @@
     [:div.col-md-12
      [:img {:src (str js/context "/img/warning_clojure.png")}]]]])
 
+(defn upload-page []
+  )
+
 (defn home-page []
-  [:div.container
-   (when-let [docs (session/get :docs)]
-     [:div.row>div.col-sm-12
-      [:div {:dangerouslySetInnerHTML
-             {:__html (md->html docs)}}]])])
+  [:p "hello, world"])
 
 (def pages
   {:home #'home-page
-   :about #'about-page})
+   :about #'about-page
+   :upload #'upload-page})
 
 (defn page []
   [(pages (session/get :page))])
@@ -76,7 +76,7 @@
   (GET "/docs" {:handler #(session/put! :docs %)}))
 
 (defn mount-components []
-  (r/render [#'navbar] (.getElementById js/document "navbar"))
+  ;(r/render [#'navbar] (.getElementById js/document "navbar"))
   (r/render [#'page] (.getElementById js/document "app")))
 
 (defn init! []

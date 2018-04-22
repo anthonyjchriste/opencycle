@@ -8,15 +8,35 @@
     </head>
     <body>
 
+    <section class="section">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">opencycle</div>
+                <div class="navbar-menu">
+                    <div class="navbar-start">
+                    </div>
+                    <div class="navbar-end">
+                        <a class="navbar-item" href="#">
+                            <span class="icon">
+                               <i class="fa fa-upload"></i>
+                            </span>
+                            &nbsp
+                            Upload Ride
+                        </a>
+                    </div>
+                </div>
+            </nav>
 
-    <div id="app">
-        Loading...
-    </div>
+            <div id="app">
+                Loading...
+            </div>
+        </div>
+    </section>
 
     <!-- scripts and styles -->
     {% style "/assets/bulma/css/bulma.min.css" %}
-    {% style "/assets/font-awesome/css/font-awesome.min.css" %}
-    {% style "/css/screen.css" %}
+    {% style "/assets/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css" %}
+
 
     <script type="text/javascript">
         var context = "{{servlet-context}}";

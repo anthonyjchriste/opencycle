@@ -24,7 +24,7 @@
                  [org.webjars.bower/tether "1.4.0"]
                  [org.webjars/bootstrap "4.0.0"]
                  [org.webjars.npm/bulma "0.7.0"]
-                 [org.webjars/font-awesome "4.7.0"]
+                 [org.webjars/font-awesome "5.0.10"]
                  [reagent "0.7.0"]
                  [reagent-utils "0.2.1"]
                  [ring-webjars "0.2.0"]
